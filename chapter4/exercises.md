@@ -40,3 +40,60 @@ This is the quickest way by just making "1 2 3" a string.
 This is my most complex and tricky way using a fold over an anon lambda to build a string
 
 foldl (\str a -> str ++ show a ++ " ") "" [1, 2, 3] ++ "look at me!"
+
+### Chapter Exercises:
+
+1. length :: [a] -> Int
+
+2.
+  a) 5
+  b) 3
+  c) 2
+  d) 5
+  
+3. The `Int` type returned by length isn't the `Fractional` type expected by `(/)` operator
+
+4. Using `div` works, because div expects types of `Intergral`, that is integral numbers.
+
+5. Bool, should expect True as result
+
+6. Bool, False
+   False
+
+7. 
+a) True
+b) error
+c) 5
+d) False
+e) error
+
+8.
+```hs
+-- isPalindrome.hs
+module IsPalindrome where
+
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome list = (list == reverse list)
+
+isPalindromeStr :: [Char] -> Bool
+isPalindromeStr str = (stripped == reverse stripped)
+  where stripped = filter (/=' ') str
+```
+
+9.
+
+```hs
+myAbs :: Integer -> Integer
+myAbs x =
+  if x >= 0
+    then x
+  else
+    (-x)
+```
+
+10.
+
+```hs
+f :: (a, b) -> (c, d) -> ((b, d), (a, c))
+f x y = ((snd x, snd y), (fst x, fst y))
+```
