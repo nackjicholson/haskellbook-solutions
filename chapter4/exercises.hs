@@ -2,7 +2,7 @@
 module Exercises where
 
 isPalindrome :: (Eq a) => [a] -> Bool
-isPalindrome list = (list == reverse list)
+isPalindrome x = x == reverse x
 
 isPalindromeStr :: [Char] -> Bool
 isPalindromeStr str = (stripped == reverse stripped)

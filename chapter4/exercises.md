@@ -97,3 +97,33 @@ myAbs x =
 f :: (a, b) -> (c, d) -> ((b, d), (a, c))
 f x y = ((snd x, snd y), (fst x, fst y))
 ```
+
+### Reading Syntax
+
+Fix 'em:
+
+1.
+```hs
+x = (+)
+
+f xs = w `x` 1
+  where w = length xs
+```
+
+2.
+`id x = x`
+
+3.
+
+`(\(x:xs) -> x`
+
+4.
+
+`f (a, b) = a`
+
+Match function name to their types
+
+1. c
+2. b
+3. a
+4. d
