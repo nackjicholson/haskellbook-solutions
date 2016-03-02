@@ -49,7 +49,7 @@ Write expressions for these transformations
 
 "Curry is awesome" -- "Curry is awesome!"
 
-```hs
+```haskell
 "Curry is awesome" ++ "!"
 ```
 

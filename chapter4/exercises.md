@@ -1,6 +1,6 @@
 ### 4.2 intermission
 
-```hs
+```haskell
 data Mood = Blah | Woot deriving Show
 ```
 
@@ -16,7 +16,7 @@ It always returns Woot mood. Also Woot isn't a type, its a value.
 
 4. Fix mistakes:
 
-```hs
+```haskell
 changeMood Mood = Woot
 changeMood _ = Blah
 ```
@@ -33,7 +33,7 @@ Compile errors fix them.
 
 This is the quickest way by just making "1 2 3" a string.
 
-```hs
+```haskell
 "1 2 3 " ++ "look at me!"
 ```
 
@@ -50,7 +50,7 @@ foldl (\str a -> str ++ show a ++ " ") "" [1, 2, 3] ++ "look at me!"
   b) 3
   c) 2
   d) 5
-  
+
 3. The `Int` type returned by length isn't the `Fractional` type expected by `(/)` operator
 
 4. Using `div` works, because div expects types of `Intergral`, that is integral numbers.
@@ -60,7 +60,7 @@ foldl (\str a -> str ++ show a ++ " ") "" [1, 2, 3] ++ "look at me!"
 6. Bool, False
    False
 
-7. 
+7.
 a) True
 b) error
 c) 5
@@ -68,7 +68,7 @@ d) False
 e) error
 
 8.
-```hs
+```haskell
 -- isPalindrome.hs
 module IsPalindrome where
 
@@ -82,7 +82,7 @@ isPalindromeStr str = (stripped == reverse stripped)
 
 9.
 
-```hs
+```haskell
 myAbs :: Integer -> Integer
 myAbs x =
   if x >= 0
@@ -93,7 +93,7 @@ myAbs x =
 
 10.
 
-```hs
+```haskell
 f :: (a, b) -> (c, d) -> ((b, d), (a, c))
 f x y = ((snd x, snd y), (fst x, fst y))
 ```
@@ -103,7 +103,7 @@ f x y = ((snd x, snd y), (fst x, fst y))
 Fix 'em:
 
 1.
-```hs
+```haskell
 x = (+)
 
 f xs = w `x` 1

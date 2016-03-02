@@ -7,7 +7,7 @@ data constructors are the values that inhabit the type they are defined in.
 
 ... I have no idea what that means ^
 
-```
+```haskell
 data Bool = False | True
      [1]    [2]  [3]  [4]
 ```

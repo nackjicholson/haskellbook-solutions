@@ -1,11 +1,11 @@
--- isPalindrome.hs
+-- exercises.hs
 module Exercises where
 
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome x = x == reverse x
 
-isPalindromeStr :: [Char] -> Bool
-isPalindromeStr str = (stripped == reverse stripped)
+isPalindromeStr :: String -> Bool
+isPalindromeStr str = stripped == reverse stripped
   where stripped = filter (/=' ') str
 
 myAbs :: Integer -> Integer

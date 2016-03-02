@@ -10,7 +10,7 @@ intermission:
 2. let double x = x * 2
 3.
 
-```hs
+```haskell
 x = 7
 y = 10
 f = x + y
@@ -50,7 +50,7 @@ z / x + y
 
 Rewrite this code for the repl
 
-```hs
+```haskell
 z = 7
 x = y ^ 2
 waxOn = x * 5
