@@ -43,7 +43,7 @@ the type of `f x` is:
 `kessel (1 :: Integer) 2` is:
   - (c) `Integer`
 
-# 5.6 Intermission
+### 5.6 Intermission
 
 2.
 
@@ -59,3 +59,12 @@ foo a b = b
 foo :: a -> b -> b
 foo a b = b
 foo _ b = b
+```
+
+### 5.7 intermission
+
+1. `myConcat :: [Char] -> [Char]`
+2. `myMult :: Fraction a => a -> a`
+3. `myTake :: Int -> [Char]`
+4. `myCom :: Int -> Bool`
+5. `myAlph :: Char -> Bool`
