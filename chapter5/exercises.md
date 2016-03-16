@@ -151,3 +151,63 @@ d = a c 200
 ```
 
 4. Nope `c` is not in scope
+
+**Type variable or specific type constructor?**
+
+2. 
+
+```haskell
+f :: zed -> Zed -> Blah
+--   [0]    [1]    [2]
+```
+
+[0] `zed` is a fully polymorphic type variable
+[1] `Zed` is concrete
+[2] `Blah` is concrete
+
+3.
+
+```haskell
+f :: Enum b => a -> b -> C
+--             [0]  [1]  [2]
+```
+
+[0] `a` is fully polymorphic
+[1] `b` is constrained polymorphic
+[1] `C` is concrete
+
+4.
+
+```haskell
+f :: f -> g -> C
+--   [0]  [1]  [2]
+```
+
+[0] is fully polymorphic???
+[1] is fully polymorphic
+[2] is concrete
+
+**Write a type signature**
+
+1.
+
+```haskell
+functionH :: [a] -> a
+functionH (x:_) = x
+```
+
+2.
+
+```haskell
+functionC :: (Ord a) => a -> a -> Bool
+functionC x y = if (x > y) then True else False
+```
+
+3.
+
+```haskell
+functionS :: (a, b) -> b
+functionS (x, y) = y
+```
+
+**Given a type, write a function**
