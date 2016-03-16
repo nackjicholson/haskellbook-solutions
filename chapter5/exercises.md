@@ -68,3 +68,86 @@ foo _ b = b
 3. `myTake :: Int -> [Char]`
 4. `myCom :: Int -> Bool`
 5. `myAlph :: Char -> Bool`
+
+### Chapter exercises
+
+**Multiple Choice**
+
+1. A value of type [a] is:
+  - (c) a list whose elements are all of some type `a`
+2. A function of type [[a]] -> [a] could: 
+  - (a) take a list of strings as an argument
+3. A function of type [a] -> Int -> a
+  - (b) returns one element of type `a` from a list
+4. A function of type (a, b) -> a
+  - (c) takes a tuple argument and returns the first value
+
+**Determine the type**
+
+1. All function application return a value. Determine the value returned by these function applications and the type of that value.
+  - (a) `(*9) 6` returns 54, with type `Num a => a`
+  - (b) `head [(0,"doge"),(1,"kitteh")]` returns (0, "doge") of type `Num t => (t, [Char])`
+  - (c) `head [(0 :: Integer,"doge"),(1,"kitteh")]` return (0 :: Integer, "doge") of type `(Integer, [Char])`
+  - (d) `if False then True else False` return False type `Bool`
+  - (e) `length [1, 2, 3, 4, 5]` returns 5 type `Int`
+  - (f) `(length [1, 2, 3, 4]) > (length "TACOCAT")` return False `Bool`
+
+2.
+
+```haskell
+x = 5
+y = x + 5
+w = y * 10
+```
+
+What is the type of `w`?
+It is `Num a => a`
+
+3.
+
+```haskell
+x = 5
+y = x + 5
+z y = y * 10
+```
+
+What is the type of z?
+It is `Num a => a -> a`
+
+4.
+
+```haskell
+x = 5
+y = x + 5
+f = 4 / y
+```
+
+What is the type of f?
+It is `Fractional a => a`
+
+5.
+
+```haskell
+x = "Julie"
+y = " <3 "
+z = "Haskell"
+f = x ++ y ++ z
+```
+
+What is the type of f?
+It is `[Char]`
+
+**Does it compile?**
+
+1. Nope, I just would say do `wahoo = bigNum`
+2. I think it compiles
+3. Nope.
+
+```haskell
+a = (+)
+b = 5
+c = a b 10
+d = a c 200
+```
+
+4. Nope `c` is not in scope
