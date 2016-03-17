@@ -46,4 +46,4 @@ xform (x, y) = (xz x, yz y)
 
 -- 4.
 munge :: (x -> y) -> (y -> (w, z)) -> x -> w
-munge f g x = fst $ f g x
+munge f g x = fst $ g $ f x
