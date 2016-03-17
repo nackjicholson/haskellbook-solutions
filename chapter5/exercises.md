@@ -75,7 +75,7 @@ foo _ b = b
 
 1. A value of type [a] is:
   - (c) a list whose elements are all of some type `a`
-2. A function of type [[a]] -> [a] could: 
+2. A function of type [[a]] -> [a] could:
   - (a) take a list of strings as an argument
 3. A function of type [a] -> Int -> a
   - (b) returns one element of type `a` from a list
@@ -154,7 +154,7 @@ d = a c 200
 
 **Type variable or specific type constructor?**
 
-2. 
+2.
 
 ```haskell
 f :: zed -> Zed -> Blah
@@ -211,3 +211,64 @@ functionS (x, y) = y
 ```
 
 **Given a type, write a function**
+
+1.
+
+```haskell
+i :: a -> a
+i a = a
+```
+
+2.
+
+```haskell
+c :: a -> b -> a
+c a b = a
+```
+
+3. Yes I believe so `c'' :: b -> a -> b` is the same signature.
+
+4.
+
+```haskell
+c` :: a -> b -> b
+c` a b = b
+```
+
+5.
+
+```haskell
+r :: [a] -> [a]
+r (_:xs) = xs
+r [] = []
+```
+
+6.
+
+```haskell
+co :: (b -> c) -> (a -> b) -> (a -> c)
+co f g = f . g
+```
+
+7.
+
+These exercises are garbage tbh...learning nothing useful
+
+```haskell
+a :: (a -> c) -> a -> a
+a b c = c
+```
+
+8.
+
+```haskell
+a' :: (a -> b) -> a -> b
+a' f = f
+-- or a' f x = f x
+```
+
+Again...wtf is this shit? Why am I doing this!!!???!!!
+
+**Fix it**
+
+see sing.hs and arith3broken.hs
