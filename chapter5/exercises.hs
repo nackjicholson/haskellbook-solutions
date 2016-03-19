@@ -28,7 +28,7 @@ w :: B -> C
 w = undefined
 
 e :: A -> C
-e = q . w
+e = w . q
 
 -- 3.
 data X
@@ -46,5 +46,5 @@ xform (x, y) = (xz x, yz y)
 
 -- 4.
 munge :: (x -> y) -> (y -> (w, z)) -> x -> w
-munge f g x = fst $ g $ f x
+munge fn1 fn2 x = fst $ fn2 $ fn1 x
 -- or??? munge f g x = (fst . g . f) x
