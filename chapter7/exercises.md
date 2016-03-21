@@ -50,3 +50,30 @@ mflip f = \x -> \y -> f y x
 ```haskell
 mflip f x y = f y x
 ```
+
+### 7.4 intermission
+
+1. Given the following declarations
+
+```haskell
+k (x, y) = x
+k1 = k ((4-1), 10)
+k2 = k ("three", (1 + 2))
+k3 = k (3, True)
+```
+
+(a) What is the type of `k`?
+`k :: (x, y) -> x`
+
+(b) What is the type of `k2`? Is it the same type as `k1` or `k3`?
+`k2 :: [Char]`. No it isn't the same type as the others. Although, k1 and k3 do have the same type. `k1 :: Num a => a`
+
+(c) Of `k1`, `k2`, `k3` which will return the number 3 as the result?
+`k1` and `k3`
+
+2. Fill in the definition of the following function:
+
+```haskell
+f :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
+f (a, _, c) (d, _, f) = ((a, d), (c, f))
+```
