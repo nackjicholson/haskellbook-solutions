@@ -77,3 +77,51 @@ k3 = k (3, True)
 f :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
 f (a, _, c) (d, _, f) = ((a, d), (c, f))
 ```
+
+### 7.8 intermission
+
+1. The otherwise matches any argument passed, and forces the avgGrade function to always return an "F" grade.
+
+2. It fails to return correctly. I put `| y >= 0.7 = 'C'` as the first rule
+and now it returns C for anything over 70 because that rule catches all.
+Basically makes A, B impossible conditions to reach.
+
+Could fix by using ranges, and not relying on order of guards.
+
+3.
+
+```
+pal xs
+  | xs == reverse xs = True
+  | otherwise = False
+```
+Returns? (b) True when xs is a palindrome
+
+4. What argument types can `pal` take.
+
+Lists
+
+5. What is the type of function `pal`
+
+`pal :: [a] -> Bool`
+
+6.
+
+```
+numbers x
+  | x < 0 = -1
+  | x == 0 = 0
+  | x > 0 = 1
+```
+
+Returns? (c) An indication of whether it's argument is a positive or negative number or zero
+
+7. What types of arguments can `numbers` take?
+
+Instances of Ord
+
+8. What is the type of `numbers`?
+
+`numbers :: Ord a => a -> Int`
+
+This might be wrong.
