@@ -31,3 +31,21 @@ multipliedBy x y = go x 0 0
   where go x' s count
           | count == y = s
           | otherwise = go x' (s + x') (count + 1)
+
+-- Fixing dividedBy
+
+data DividedResult
+  = Result (Integer, Integer)
+  | DividedByZero
+  deriving Show
+
+dividedBy :: Integer -> Integer -> DividedResult
+dividedBy 0 _ = Result (0, 0)
+dividedBy _ 0 = DividedByZero
+dividedBy num denom = go absNum absDenom 0
+  where multiplier = signum num * signum denom
+        absNum = abs num
+        absDenom = abs denom
+        go n d count
+          | n < count = Result (count * multiplier, n)
+          | otherwise = go (n - d) d (count + 1)

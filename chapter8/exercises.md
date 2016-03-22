@@ -121,3 +121,7 @@ should be (Eq a, Num a) => a -> a.
 summation. The type should be (Integral a) => a -> a -> a
 
 -- see [exercises.hs](./exercises.hs) `multipliedBy`
+
+**Fixing dividedBy**
+
+-- see [exercises.hs](./exercises.hs) `dividedBy`
