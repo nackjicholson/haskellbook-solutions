@@ -103,7 +103,7 @@ Lists
 
 5. What is the type of function `pal`
 
-`pal :: [a] -> Bool`
+`pal :: Eq a => [a] -> Bool`
 
 6.
 
@@ -122,6 +122,41 @@ Instances of Ord
 
 8. What is the type of `numbers`?
 
-`numbers :: Ord a => a -> Int`
+`numbers :: (Num a, Ord a, Num b) => a -> b`
 
-This might be wrong.
+### Chapter exercises
+
+**Multiple Choice**
+
+1. A polymorphic function
+
+(d) may resolve to values of different types, depending on the inputs.
+
+2. Two functions named f and g have types Char -> String
+and String -> [String] respectively. The composed
+function g . f has the type
+
+(b) Char -> [String]
+
+3. A function f has the type Ord a => a -> a -> Bool and
+we apply it to one numeric value. What is the type now?
+
+(d) (Ord a, Num a) => a -> Bool
+
+4. A function with the type (a -> b) -> c
+
+(b) is a higher order function
+
+5. Given the following definition of f, what is the type of
+f True?
+
+```
+f :: a -> a
+f x = x
+```
+
+(a) f True :: Bool
+
+**Let's write code**
+
+see [exercises.hs](./exercises.hs)
