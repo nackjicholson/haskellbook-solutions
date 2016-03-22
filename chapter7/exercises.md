@@ -2,8 +2,6 @@
 
 ### 7.3 intermission
 
-1. Which are equivalent
-
 ```
 mTh x y z = x * y * z
 mTh x y = \z -> x * y * z
@@ -11,16 +9,18 @@ mTh x = \y -> \z -> x * y * z
 mTh = \x -> \y -> \z -> x * y * z
 ```
 
+1. Which are equivalent
+
   - All of them.
 
-2.The type of mTh (above) is Num a => a -> a -> a -> a.
+2. The type of mTh (above) is Num a => a -> a -> a -> a.
 Which is the type of mTh 3?
 
   - (d) `Num a => a -> a -> a`
 
 3. Anonymous functions
 
-a) Rewrite the f function in the where clause.
+(a) Rewrite the f function in the where clause.
 
 ```haskell
 addOneIfOdd n = case odd n of
@@ -35,7 +35,7 @@ addOneIfOdd n = case odd n of
   False -> n
 ```
 
-b) Rewrite the following to use anonymous lambda syntax:
+(b) Rewrite the following to use anonymous lambda syntax:
 
 ```haskell
 addFive x y = (if x > y then y else x) + 5
@@ -45,7 +45,7 @@ addFive x y = (if x > y then y else x) + 5
 addFive = \x -> \y -> (if x > y then y else x) + 5
 ```
 
-c) Rewrite the following so that it doesn’t use anonymous lambda syntax:
+(c) Rewrite the following so that it doesn’t use anonymous lambda syntax:
 
 ```haskell
 mflip f = \x -> \y -> f y x
@@ -95,13 +95,15 @@ Basically makes A, B impossible conditions to reach.
 
 Could fix by using ranges, and not relying on order of guards.
 
-3. Returns?
+---
 
 ```
 pal xs
   | xs == reverse xs = True
   | otherwise = False
 ```
+
+3. Returns?
 
   - (b) True when xs is a palindrome
 
@@ -113,7 +115,7 @@ Lists
 
 `pal :: Eq a => [a] -> Bool`
 
-6. Returns?
+---
 
 ```
 numbers x
@@ -121,6 +123,8 @@ numbers x
   | x == 0 = 0
   | x > 0 = 1
 ```
+
+6. Returns?
 
   - (c) An indication of whether it's argument is a positive or negative number or zero
 
