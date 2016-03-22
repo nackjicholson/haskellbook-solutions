@@ -119,5 +119,3 @@ g f (a, c) = (b, c)
 
 -- 6.
 -- see arith4.hs
-
--- Awesome exercises, I had a lot of fun and learned a lot. :sarcasm:
