@@ -1,6 +1,8 @@
 -- chapter8/exercises.hs
 module Exercises where
 
+import Data.List (intercalate)
+
 cattyConny :: String -> String -> String
 cattyConny x y = x ++ " mrow " ++ y
 
@@ -49,3 +51,51 @@ dividedBy num denom = go absNum absDenom 0
         go n d count
           | n < count = Result (count * multiplier, n)
           | otherwise = go (n - d) d (count + 1)
+
+-- McCarthy 91
+
+mc91 :: (Integral a) => a -> a
+mc91 n
+  | n > 100 = n - 10
+  | otherwise = mc91 (mc91 (n + 11))
+
+-- Numbers into words
+
+digitToWord :: Int -> String
+digitToWord 0 = "zero"
+digitToWord 1 = "one"
+digitToWord 2 = "two"
+digitToWord 3 = "three"
+digitToWord 4 = "four"
+digitToWord 5 = "five"
+digitToWord 6 = "six"
+digitToWord 7 = "seven"
+digitToWord 8 = "eight"
+digitToWord _ = "nine"
+
+-- My first attempt at the digits function.
+-- It's fairly gross but does work.
+-- It builds a list of digits determined by `divMod` and `mod`
+-- methodology from chapter 7. I start with a position of 1,
+-- in order to capture the place value in the "ones" position. The position
+-- is multiplied by the base of 10 for each successive run in order to get
+-- the digit from the next place value. When the position value is
+-- greater than the number, the loop terminates and returns the list of digits.
+--
+digits' :: Int -> [Int]
+digits' n = go [] 1
+  where go list position
+          | position > n = list
+          | otherwise = go (x:list) (position * 10)
+          where (xLast, _) = n `divMod` position
+                x = xLast `mod` 10
+
+-- Second attempt. Better? I dunno maybe more list intensive (doesn't matter).
+-- Certainly easier to understand.
+digits :: Int -> [Int]
+digits n
+  | n < 10 = [n]
+  | otherwise = digits(n `div` 10) ++ [n `mod` 10]
+
+wordNumber :: Int -> String
+wordNumber n = intercalate "-" (map digitToWord (digits n))
