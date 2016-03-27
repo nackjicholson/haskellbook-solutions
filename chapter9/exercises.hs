@@ -50,3 +50,11 @@ myWords str
         remaining = drop (length word + 1) str
 
 -- 2. see poemLines.hs
+
+-- 3.
+explodeStrOnChar :: Char -> String -> [String]
+explodeStrOnChar char str
+  | null str = []
+  | otherwise = subString : explodeStrOnChar char remainingStr
+  where subString = takeWhile (/= char) str
+        remainingStr = drop (length subString + 1) str
