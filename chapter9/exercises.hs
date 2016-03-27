@@ -38,3 +38,15 @@ eftInt = eft
 
 eftChar :: Char -> Char -> String
 eftChar = eft
+
+-- 9.6 Intermission
+
+-- 1.
+myWords :: String -> [String]
+myWords str
+  | null str = []
+  | otherwise = word : myWords remaining
+  where word = takeWhile (/=' ') str
+        remaining = drop (length word + 1) str
+
+-- 2. see poemLines.hs
