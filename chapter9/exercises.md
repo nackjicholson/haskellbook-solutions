@@ -146,3 +146,21 @@ does the same as this `map (\x -> if x == 3 then (-x) else (x)) [1..10]` but use
 if-then-else syntax.
 
   - `map (\x -> bool x (-x) (x == 3)) [1..10]`
+
+### 9.10 Intermission
+
+1. Write a filter function that would give us all the
+multiples of 3 out of a list from 1-30?
+
+  - `filter (\x -> rem x 3 == 0) [1..30]`
+  - `[x | x <- [1..30], rem x 3 == 0]`
+
+2. Compose with length to produce how many multiples of three there are.
+
+  - `(length . (filter (\x -> rem x 3 == 0))) [1..30]`
+
+3. see [exercises.hs](./exercises.hs) `myFilter`
+
+### 9.11 Intermission
+
+see [exercises.hs](./exercises.hs) `myZip`

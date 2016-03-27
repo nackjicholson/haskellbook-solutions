@@ -57,3 +57,33 @@ explodeStrOnChar _ [] = []
 explodeStrOnChar char str = subString : explodeStrOnChar char remainingStr
   where subString = takeWhile (/= char) str
         remainingStr = drop (length subString + 1) str
+
+-- 9.10 Intermission
+
+-- 3.
+-- myFilter "the brown dog was a goof"
+-- ["brown","dog","was","goof"]
+myFilter :: String -> [String]
+myFilter str = filter isNotArticle (myWords str)
+  where isNotArticle x = x `notElem` ["a", "an", "the"]
+
+-- 9.11 Intermission
+
+-- 1. Remimplement zip
+myZip' :: [a] -> [b] -> [(a, b)]
+myZip' [] _ = []
+myZip' _ [] = []
+myZip' (x:xs) (y:ys) = (x, y) : myZip' xs ys
+
+-- 2. Remimplement zipWith
+myZipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+myZipWith _ [] _ = []
+myZipWith _ _ [] = []
+myZipWith f (x:xs) (y:ys) = f x y : myZipWith f xs ys
+-- Actually behaves slightly different if you do list comprehension
+-- it won't stop as soon a list is empty.
+-- myZipWith f xs ys = [f x y | x <- xs, y <- ys]
+
+-- 3. Rewrite myZip in terms of myZipWith
+myZip :: [a] -> [b] -> [(a, b)]
+myZip = myZipWith (\x y -> (x, y))
