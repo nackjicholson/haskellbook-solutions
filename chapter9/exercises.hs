@@ -53,8 +53,7 @@ myWords str
 
 -- 3.
 explodeStrOnChar :: Char -> String -> [String]
-explodeStrOnChar char str
-  | null str = []
-  | otherwise = subString : explodeStrOnChar char remainingStr
+explodeStrOnChar _ [] = []
+explodeStrOnChar char str = subString : explodeStrOnChar char remainingStr
   where subString = takeWhile (/= char) str
         remainingStr = drop (length subString + 1) str
