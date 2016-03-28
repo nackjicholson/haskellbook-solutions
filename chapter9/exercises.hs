@@ -1,6 +1,8 @@
 -- chapter9/exercises.hs
 module Exercises where
 
+import Data.Char
+
 -- 9.5 Intermission
 --
 -- Not clear at all to me what this book wants me to do with these type specific
@@ -87,3 +89,80 @@ myZipWith f (x:xs) (y:ys) = f x y : myZipWith f xs ys
 -- 3. Rewrite myZip in terms of myZipWith
 myZip :: [a] -> [b] -> [(a, b)]
 myZip = myZipWith (\x y -> (x, y))
+
+-- Chapter Exersises
+
+-- Data.Char Review
+
+filterByUpper :: String -> String
+filterByUpper = filter isUpper
+
+capitalizeFirstChar :: String -> String
+capitalizeFirstChar "" = ""
+capitalizeFirstChar (x:xs) = toUpper x : xs
+
+shout :: String -> String
+shout "" = ""
+shout (x:xs) = toUpper x : shout xs
+
+capitalizeHead :: String -> Char
+capitalizeHead = toUpper . head
+
+-- Write your own standard functions
+
+myAnd :: [Bool] -> Bool
+myAnd [] = True
+myAnd (x:xs) = x && myAnd xs
+
+myOr :: [Bool] -> Bool
+myOr [] = False
+myOr (x:xs) = x || myOr xs
+
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny _ [] = False
+myAny f (x:xs) = f x || myAny f xs
+
+myElem :: Eq a => a -> [a] -> Bool
+myElem x = myAny (x==)
+
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
+
+squish :: [[a]] -> [a]
+squish [] = []
+squish [x] = x
+squish (x:xs) = x ++ squish xs
+
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap _ [] = []
+squishMap f (x:xs) = f x ++ squishMap f xs
+
+squishAgain :: [[a]] -> [a]
+squishAgain = squishMap id
+
+myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+myMaximumBy f (x:xs) = go f xs x
+  where go _ [] acc = acc
+        go g [y] acc = case g y acc of
+                            GT -> y
+                            _ -> acc
+        go g (y:ys) acc = case g y acc of
+                               GT -> go g ys y
+                               _ -> go g ys acc
+
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy f (x:xs) = go f xs x
+  where go _ [] acc = acc
+        go g [y] acc = case g y acc of
+                            LT -> y
+                            _ -> acc
+        go g (y:ys) acc = case g y acc of
+                               LT -> go g ys y
+                               _ -> go g ys acc
+
+myMaximum :: (Ord a) => [a] -> a
+myMaximum = myMaximumBy compare
+
+myMinimum :: (Ord a) => [a] -> a
+myMinimum = myMinimumBy compare
