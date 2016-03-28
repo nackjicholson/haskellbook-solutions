@@ -20,7 +20,6 @@ encodeChar shift char
         charCode = ord char
         shiftedCharCode = charCode + shiftMod
 
-
 decodeChar :: Int -> Char -> Char
 decodeChar = encodeChar . negate
 
