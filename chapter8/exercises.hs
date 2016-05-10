@@ -49,7 +49,7 @@ dividedBy num denom = go absNum absDenom 0
         absNum = abs num
         absDenom = abs denom
         go n d count
-          | n < count = Result (count * multiplier, n)
+          | n < d = Result (count * multiplier, n)
           | otherwise = go (n - d) d (count + 1)
 
 -- McCarthy 91
@@ -87,8 +87,7 @@ digits' n = go [] 1
   where go list position
           | position > n = list
           | otherwise = go (x:list) (position * 10)
-          where (xLast, _) = n `divMod` position
-                x = xLast `mod` 10
+          where x = (n `div` position) `mod` 10
 
 -- Second attempt. Better? I dunno maybe more list intensive (doesn't matter).
 -- Certainly easier to understand.

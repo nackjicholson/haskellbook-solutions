@@ -51,6 +51,12 @@ myWords str
   where word = takeWhile (/=' ') str
         remaining = drop (length word + 1) str
 
+-- The books answers
+myWords' :: String -> [String]
+myWords' [] = []
+myWords' (' ':xs) = myWords xs
+myWords' xs = takeWhile (/= ' ') xs : myWords (dropWhile (/= ' ') xs)
+
 -- 2. see poemLines.hs
 
 -- 3.

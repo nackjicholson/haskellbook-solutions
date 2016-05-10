@@ -86,7 +86,7 @@ to determine how many tuples inhabit your output list
 
 2. `1 : 2 : 3 : 4 : _`
 
-  - Neither?
+  - WHNF
 
 3. `enumFromTo 1 10`
 
@@ -102,14 +102,11 @@ to determine how many tuples inhabit your output list
 
 6. `['a'..'m'] ++ ['n'..'z']`
 
-  - WHNF?
+  - Neither
 
 7. `(_, 'b')`
 
-  - WHNF?
-
-If you know the answers here, let me know or make a PR.
-This doesn't make sense to me
+  - WHNF
 
 ### 9.9 Intermission
 
