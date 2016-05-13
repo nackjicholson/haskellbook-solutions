@@ -111,6 +111,10 @@ shout :: String -> String
 shout "" = ""
 shout (x:xs) = toUpper x : shout xs
 
+-- Alternative using map
+shout' :: String -> String
+shout' = map toUpper
+
 capitalizeHead :: String -> Char
 capitalizeHead = toUpper . head
 
