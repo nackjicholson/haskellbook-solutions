@@ -60,7 +60,7 @@ to determine how many tuples inhabit your output list
 
 6. `take 1 $ filter even [1, 2, 3, undefined]`
 
-  - No, returns `1`
+  - No, returns `[2]`
 
 7. `take 1 $ filter even [1, 3, undefined]`
 
