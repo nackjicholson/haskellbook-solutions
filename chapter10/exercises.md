@@ -87,3 +87,7 @@ test in your REPL:
   - (i) `foldl (flip const) 'z' [1..5]`
 
   g through i are tiresome. This book can go fuck itself. Don't understand the point of these and they're not interesting problems to solve at all.
+
+### 10.6 Intermission
+
+see [Database.hs](./database.hs)
