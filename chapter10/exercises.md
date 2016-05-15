@@ -92,3 +92,30 @@ test in your REPL:
 ### 10.6 Intermission
 
 see [Database.hs](./database.hs)
+
+### Chapter Exercises
+
+1. see [exercises.hs](./exercises.hs)
+
+2. What does the following mystery function do? What is its type?
+Try to get a good sense of what it does before you test it in the
+REPL to verify it.
+
+```haskell
+seekritFunc x =
+  div (sum (map length (words x)))
+  (length (words x))
+```
+
+It takes a string, and figures out what the average word length is in the string.
+
+3. We’d really like the answer to be more precise. Can you rewrite
+that using fractional division?
+
+```haskell
+avgWordLength :: (Fractional a) => String -> a
+avgWordLength text = numberOfLetters / numberOfWords
+  where numberOfWords = (fromIntegral . length . words) text
+        numberOfLetters = sum (map (fromIntegral . length) (words text))
+
+```
