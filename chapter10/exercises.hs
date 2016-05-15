@@ -71,3 +71,32 @@ myMap f = foldr ((:) . f) []
 -- as the built-in filter.
 myFilter :: (a -> Bool) -> [a] -> [a]
 myFilter f = foldr (\x xs -> if f x then x:xs else xs) []
+
+-- 7. squish flattens a list of lists into a list
+squish :: [[a]] -> [a]
+squish = foldr (++) []
+
+-- 8. squishMap maps a function over a list and concatenates the results.
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap f = foldr ((++) . f) []
+
+-- 9. squishAgain flattens a list of lists into a list. This time re-use the
+-- squishMap function.
+squishAgain :: [[a]] -> [a]
+squishAgain = squishMap id
+
+-- 10. myMaximumBy takes a comparison function and a list and returns
+-- the greatest element of the list based on the last value that the
+-- comparison returned GT for.
+myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+myMaximumBy _ [] = undefined
+myMaximumBy f (x:xs) = foldl compareFn x xs
+  where compareFn b x' = if f x' b == GT then x' else b
+
+-- 11. myMinimumBy takes a comparison function and a list and returns
+-- the least element of the list based on the last value that the comparison
+-- returned LT for.
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy _ [] = undefined
+myMinimumBy f (x:xs) = foldl compareFn x xs
+  where compareFn b x' = if f x' b == LT then x' else b
