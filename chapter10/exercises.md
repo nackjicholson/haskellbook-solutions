@@ -83,10 +83,11 @@ test in your REPL:
   - (f) `foldr const 'a' [1..5]`
     - `foldl const 'a' [1..5]` or `foldr (flip const) 'a' [1..5]`
   - (g) `foldr const 0 "tacos"`
+    - yada yada yada
   - (h) `foldl (flip const) 0 "burritos"`
+    - yada yada yada
   - (i) `foldl (flip const) 'z' [1..5]`
-
-  g through i are tiresome. This book can go fuck itself. Don't understand the point of these and they're not interesting problems to solve at all.
+    - yada yada yada
 
 ### 10.6 Intermission
 
