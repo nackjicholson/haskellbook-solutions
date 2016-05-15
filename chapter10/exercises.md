@@ -101,21 +101,21 @@ see [Database.hs](./database.hs)
 Try to get a good sense of what it does before you test it in the
 REPL to verify it.
 
-```haskell
-seekritFunc x =
-  div (sum (map length (words x)))
-  (length (words x))
-```
+  ```haskell
+  seekritFunc x =
+    div (sum (map length (words x)))
+    (length (words x))
+  ```
 
-It takes a string, and figures out what the average word length is in the string.
+  It takes a string, and figures out what the average word length is in the string.
 
 3. We’d really like the answer to be more precise. Can you rewrite
 that using fractional division?
 
-```haskell
-avgWordLength :: (Fractional a) => String -> a
-avgWordLength text = numberOfLetters / numberOfWords
-  where numberOfWords = (fromIntegral . length . words) text
-        numberOfLetters = sum (map (fromIntegral . length) (words text))
+  ```haskell
+  avgWordLength :: (Fractional a) => String -> a
+  avgWordLength text = numberOfLetters / numberOfWords
+    where numberOfWords = (fromIntegral . length . words) text
+          numberOfLetters = sum (map (fromIntegral . length) (words text))
 
-```
+  ```
