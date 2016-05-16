@@ -39,18 +39,18 @@ groupJam rows = groupBy sameFruit sortedFruit
     sortedFruit = (sortRowByFruit . concat) rows
 
 countJam :: JamJars -> Int -> Int
-countJam jars total = total + quantity jars
+countJam jam total = total + quantity jam
 
 jamInRow :: [JamJars] -> Int
 jamInRow = foldr countJam 0
 
 howMuchJam :: [[JamJars]] -> Int
-howMuchJam rows = sum (map jamInRow rows)
+howMuchJam rs = sum (map jamInRow rs)
 
 findRowWithMostJam :: [[JamJars]] -> [JamJars]
 findRowWithMostJam [] = undefined
-findRowWithMostJam (row:rows) = foldr maxJam row rows
+findRowWithMostJam (r:rs) = foldr maxJam r rs
   where
     maxJam [] _ = []
-    maxJam r [] = r
-    maxJam r mostRow = if jamInRow r > jamInRow mostRow then r else mostRow
+    maxJam row [] = row
+    maxJam row mostRow = if jamInRow row > jamInRow mostRow then row else mostRow
