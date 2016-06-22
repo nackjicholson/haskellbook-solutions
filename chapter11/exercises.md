@@ -105,3 +105,31 @@ see [jammin.hs]('./jammin.hs')
     | Lilac Gardener
     deriving Show
   ```
+
+### 11.11
+
+see [exercises.hs]('./exercises.hs')
+
+### 11.12
+
+```haskell
+data Quad
+  = One
+  | Two
+  | Three
+  | Four
+  deriving (Eq, Show)
+```
+
+1. how many different forms can this take? `eQuad :: Either Quad Quad`
+  - 4 + 4 = 8
+2. `prodQuad :: (Quad, Quad)`
+  - 4 * 4 = 16
+3. `funcQuad :: Quad -> Quad`
+  - 4 ^ 4 = 256
+4. `prodTBool :: (Bool, Bool, Bool)`
+  - 2 * 2 * 2 = 8
+5. `gTwo :: Bool -> Bool -> Bool`
+  - 2 ^ 2 ^ 2 = 16
+6. Hint: 5 digit number `fTwo :: Bool -> Quad -> Quad`
+  - (2 ^ 4) ^ 4 = 65536
