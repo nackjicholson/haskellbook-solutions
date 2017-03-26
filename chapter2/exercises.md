@@ -1,3 +1,4 @@
+# Exercises 2
 
 ## Parenthesization
 
@@ -16,54 +17,69 @@
   `(2 ^ 2) * (4 ^ 5) + 1`
   `4097`
 
+## Equivalent expressions
 
-Write the `let` expressions into declarations with `where` clauses:
+1. 1 + 1
 
-1. let x = 3; y = 1000 in x * 3 + y
+  2
 
-x * 3 + y
-  where x = 3
-        y = 1000
+  equivalent
 
-2. let y = 10; x = 10 * 5 + y in x * 5
+2. 10 ^ 2
 
-x * 5
-  where y = 10
-        x = 10 * 5 + y
+  10 + 9 * 10
 
-3. let x = 7; y = negate x; z = y * 10 in z / x + y
+  equivalent 100
 
-z / x + y
-  where x = 7
-        y = negate x
-        z = y * 10
+3. 400 - 37
 
-Rewrite this code for the repl
+  (-) 37 400
 
-```haskell
+  not equivalent
+
+4. 100 `div` 3
+
+  100 / 3
+
+  not equivalent
+
+5. 2 * 5 + 18
+
+  2 * (5 + 18)
+
+  not equivalent
+
+## More fun with functions
+
+REPL THIS:
+
+``` haskell
 z = 7
 x = y ^ 2
 waxOn = x * 5
 y = z + 8
 ```
 
-I think it will b (15 ^ 2) * 5
+`let z = 7; y = z + 8; x = y ^ 2; waxOn = x * 5 in waxOn`
 
-for repl
+Or
 
-let z = 7
-let y = z + 8
-let x = y ^ 2
-let waxOn = x * 5
+```
+λ: let z = 7
+λ: let y = z + 8
+λ: let x = y ^ 2
+λ: let waxOn = x * 5
+```
 
-10 + waxOn
--- 1135
+1. What happens with:
 
-(+10) waxOn
--- 1135
+  10 + waxOn `1135`
+  (+10) waxOn `1135`
+  (-) 15 waxOn `-1110`
+  (-) waxOn 15 `1110`
 
-(-) 15 waxOn
--- -1110
+2. let triple x = x * 3
 
-(-) waxOn 15
--- 1110
+3. triple waxOn `3375`
+
+4, 5, 6, 7. [practice.hs](./practice.hs)
