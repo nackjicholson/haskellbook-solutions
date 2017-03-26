@@ -1,31 +1,21 @@
-intermission:
 
-1. 8 + 7 * 9, not the same as (8  + 7) * 9
-2. is the same
-3. different
+## Parenthesization
 
-2.6:
+1. 2 + 2 * 3 - 1
 
-1. let area x = 3.14 * (x * x)
-2. let double x = x * 2
-3.
+  `2 + (2 * 3) - 1`
+  `7`
 
-```haskell
-x = 7
-y = 10
-f = x + y
-```
+2. (^) 10 $ 1 + 1
 
-2.12 let and where
+  `10 ^ (1 + 1)`
+  `100`
 
-1. let x = 5 in x
-5
-2. let x = 5 in x * x
-25
-3. let x = 5; y = 6 in x * y
-30
-4. let x = 3; y = 1000 in x + 3
-Tricky! it's 6
+3. 2 ^ 2 * 4 ^ 5 + 1
+
+  `(2 ^ 2) * (4 ^ 5) + 1`
+  `4097`
+
 
 Write the `let` expressions into declarations with `where` clauses:
 
