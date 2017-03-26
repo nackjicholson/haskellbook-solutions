@@ -1,60 +1,142 @@
-3.3 intermission
+# Exercises 3
 
-1. y is in scope
-2. no h is not in scope
+## Exercises: scope
 
-3.4 intermission
+1. These lines of code are from a REPL session. Is _y_ in scope for _z_?
 
-1. ++ [1, 2, 3] [4, 5, 6] No, needs parens around operator (++)
-2. '<3' ++ ' Haskell' No, because it needs double quote strings.
-"<3" ++ " Haskell"
-3. concat ["<3", " Haskell"] yes
+  Prelude> let x = 5
+  Prelude> let y = 7
+  Prelude> let z = x * y
 
-Exercises:
+  > Yes, y is in scope for z.
 
-1. Correct if needed, run in REPL
+2. These lines of code are from a REPL session. Is _h_ in scope for function _g_? Go with your gut here.
 
-a) concat [[1,2,3], [4,5,6]]
-correct
+  Prelude> let f = 3
+  Prelude> let g = 6 * f + h
 
-b) Needs parens around ++
-(++) [1, 2, 3] [4, 5, 6]
+  > No, h is not in scope.
 
-c) (++) "hello" " world!"
-correct
+3. This code sample is from a source file. Is everything we need to execute area in scope?
 
-d) all sorts of wrong, don't know what they are trying to do. Maybe this...a list with a string inside
-["hello" ++ " world!"]
+  ```haskell
+  area d = pi * (r * r)
+  r = d / 2
+  ```
 
-e) should be reversed to "hello" !! 4
+  > No, _d_ is out of scope for _r_.
 
-f) correct
+4. This code is also from a source file. Now are _r_ and _d_ in scope for area?
 
-g) should be take 4 "lovely"
+  ```haskell
+  area d = pi * (r * r)
+  where r = d / 2
+  ```
 
-h) correct
+  > Yes.
 
+## Exercises: Syntax Errors
 
-2.
+Read the syntax of the following functions and decide whether it will compile. Test them in your REPL and try to fix the syntax errors where they occur.
 
-a -- d
-b -- c
-c -- e
-d -- a
-e -- b
+1. ++ [1, 2, 3] [4, 5, 6]
 
-3.
+  > No, needs parens around the `(++)`
 
-Write expressions for these transformations
+2. '<3' ++ ' Haskell'
 
-"Curry is awesome" -- "Curry is awesome!"
+  > No, needs `"` double-quotes
 
-```haskell
-"Curry is awesome" ++ "!"
-```
+3. concat ["<3", " Haskell"]
 
-"Curry is awesome!" -- "y"
-["Curry is awesome" !! 4]
+  > Yes
 
-"Curry is awesome!" -- "awesome!"
-drop 9 "Curry is awesome!"
+## Chapter Exercises:
+
+### Reading Syntax
+
+1. For the following lines of code, read the syntax carefully and decide if they are written correctly. Test them in your REPL after you’ve decided to check your work. Correct as many as you can.
+
+  a) concat [[1, 2, 3], [4, 5, 6]]
+
+    > correct
+
+  b) ++ [1, 2, 3] [4, 5, 6]
+
+    > incorrect `(++) [1, 2, 3] [4, 5, 6]`
+
+  c) (++) "hello" " world"
+
+    > correct
+
+  d) ["hello" ++ " world]
+
+    > correct if your goal is to have ["hello world"] for some reason.
+
+  e) 4 !! "hello"
+
+    > incorrect `"hello" !! 4` or `(!!) "hello" 4`
+
+  f) (!!) "hello" 4
+
+    > correct
+
+  g) take "4 lovely"
+
+    > incorrect `take 4 "lovely"`
+
+  h) take 3 "awesome"
+
+    > correct
+
+2. Next we have two sets: the first set is lines of code and the other is a set of results. Read the code and figure out which results came from which lines of code. Be sure to test them in the REPL.
+
+  a) concat [[1 * 6], [2 * 6], [3 * 6]]
+
+  b) "rain" ++ drop 2 "elbow"
+
+  c) 10 * head [1, 2, 3]
+
+  d) (take 3 "Julie") ++ (tail "yes")
+
+  e) concat [tail [1, 2, 3], tail [4, 5, 6], tail [7, 8, 9]]
+
+  Can you match each of the previous expressions to one of these results presented in a scrambled order?
+
+  a) "Jules"
+
+    > d
+
+  b) [2,3,5,6,8,9]
+
+    > e
+
+  c) "rainbow"
+
+    > b
+
+  d) [6,12,18]
+
+    > a
+
+  e) 10
+
+    > c
+
+### Building functions
+
+1. Write expressions for these transformations
+
+  "Curry is awesome" -- "Curry is awesome!"
+
+  ```haskell
+  "Curry is awesome" ++ "!"
+  ```
+
+  "Curry is awesome!" -- "y"
+  ["Curry is awesome" !! 4]
+
+  "Curry is awesome!" -- "awesome!"
+  drop 9 "Curry is awesome!"
+
+2, 3, 4, 5, 6. [exercies.hs](./exercises.hs)
