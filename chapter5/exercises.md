@@ -1,47 +1,137 @@
-# Chapter 5 Exercises
+# Exercises 5 - Types
 
-### 5.4 Intermission
+## Exercises: Type Matching
 
+Match functions to their type:
+
+1. Functions:
+
+  a) not  
+  b) length  
+  c) concat  
+  d) head  
+  e) (<)
+
+2. Type signatures:
+
+  a) _ :: [a] -> a  
+  b) _ :: [[a]] -> [a]  
+  c) _ :: Bool -> Bool  
+  d) _ :: [a] -> Int  
+  e) _ :: Ord a => a -> a -> Bool
+
+```haskell
+-- (a, c)
 not :: Bool -> Bool
+-- (b, d)
 length :: [a] -> Int
+-- (c, b)
 concat :: [[a]] -> [a]
+-- (d, a)
 head :: [a] -> a
+-- (e, e)
 (<) :: Ord a => a -> a -> Bool
+```
 
-### 5.5 Intermission
+## Exercises: Type Arguments
 
-1. If the type of `f` is `a -> a -> a -> a` and the type of `x` is `Char`, then
-the type of `f x` is:
-  - (a) `Char -> Char -> Char`
+Which type results from application of function?
 
-2. If the type of `g` is `a -> b -> c -> b` then the type of `g 0 'c' "woot"` is:
-  - (d) `Char`
+1. If the type of f is `a -> a -> a -> a`, and the type of 𝑥 is Char then the type of `f x` is
 
-3. If the type of `h` is `(Num a, Num b) => a -> b -> b` then the type of `h 1.0 2` is:
-  - (d) `Num b => b` -- I had to write code to get this, I kind of thought it would be `Integer`
+  a) Char -> Char -> Char  
+  b) x -> x -> x -> x  
+  c) a -> a -> a  
+  d) a -> a -> a -> Char
 
-4. If the type of `h` is `(Num a, Num b) => a -> b -> b` then the type of
-`h 1 (5.5 :: Double)` is:
-  - (c) `Double`
+  > a
 
-5. If the type of `jackal` is `(Ord a, Eq b) => a -> b -> a` then the type of `jackal "keyboard" "has the word jackal in it"`
-  - (a) `[Char]`
+2. If the type of g is `a -> b -> c -> b`, then the type of `g 0 'c' "woot"` is
 
-6. If the type of `jackal` is `(Ord a, Eq b) => a -> b -> a` then the type of
-`jackal "keyboard"`
-  - (e) `Eq b => b -> [Char]`
+  a) String  
+  b) Char -> String  
+  c) Int  
+  d) Char
 
-7. If the type of `kessel` is `(Ord a, Num b) => a -> b -> a`, then the type of
-`kessel 1 2` is:
-  - (e) `(Num a, Ord a) => a`
+  > d
 
-8. If the type of `kessel` is `(Ord a, Num b) => a -> b -> a`, then the type of
-`kessel 1 (2 :: Integer)` is:
-  - (e) `(Num a, Ord a) => a`
+3. If the type of h is `(Num a, Num b) => a -> b -> b`, then the type of `h 1.0 2` is:
 
-9. If the type of `kessel` is `(Ord a, Num b) => a -> b -> a`, then the type of
-`kessel (1 :: Integer) 2` is:
-  - (c) `Integer`
+  a) Double  
+  b) Integer  
+  c) Integral b => b  
+  d) Num b => b  
+
+  > d
+
+4. If the type of h is `(Num a, Num b) => a -> b -> b`, then the type of `h 1 (5.5 :: Double)` is
+
+  a) Integer  
+  b) Fractional b => b  
+  c) Double  
+  d) Num b => b
+
+  > c
+
+5. If the type of jackal is `(Ord a, Eq b) => a -> b -> a`, then the type of `jackal "keyboard" "has the word jackal in it"`
+
+  a) [Char]  
+  b) Eq b => b  
+  c) b -> [Char]  
+  d) b  
+  e) Eq b => b -> [Char]
+
+  > a
+
+6. If the type of jackal is `(Ord a, Eq b) => a -> b -> a`, then the type of `jackal "keyboard"`
+
+  a) b  
+  b) Eq b => b  
+  c) [Char]  
+  d) b -> [Char]  
+  e) Eq b => b -> [Char]
+
+  > e
+
+  Note: Because the b argument is still unknown, go with generic Eq
+
+7. If the type of kessel is `(Ord a, Num b) => a -> b -> a`, then the type of `kessel 1 2` is
+
+  a) Integer  
+  b) Int  
+  c) a  
+  d) (Num a, Ord a) => a  
+  e) Ord a => a  
+  f) Num a => a
+
+  > d
+
+  Note: This is tricky, I thought it was e but I see now that because the argument bound to `a` is `1` (which is a `Num`) it is inferred that the return value must be Ord and Num. I think I'm still a bit confused as to why it's not just Num...but the next chapter is typeclasses.
+
+8. If the type of kessel is `(Ord a, Num b) => a -> b -> a`, then the type of `kessel 1 (2 :: Integer)` is
+
+  a) (Num a, Ord a) => a  
+  b) Int  
+  c) a  
+  d) Num a => a  
+  e) Ord a => a  
+  f) Integer
+
+  > a
+
+  Note: Same reason as 7, they just trying to trick you with the casting of b to Integer.
+
+9. If the type of kessel is `(Ord a, Num b) => a -> b -> a`, then the type of `kessel (1 :: Integer) 2` is
+
+  a) Num a => a  
+  b) Ord a => a  
+  c) Integer  
+  d) (Num a, Ord a) => a  
+  e) a
+
+  > c
+
+  Note: It's set as Integer, no more guessing.
 
 ### 5.6 Intermission
 

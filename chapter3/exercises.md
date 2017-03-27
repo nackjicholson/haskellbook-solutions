@@ -1,4 +1,4 @@
-# Exercises 3
+# Exercises 3 - Strings
 
 ## Exercises: scope
 

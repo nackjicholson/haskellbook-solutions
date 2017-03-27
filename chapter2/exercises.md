@@ -1,4 +1,4 @@
-# Exercises 2
+# Exercises 2 - Hello, Haskell!
 
 ## Parenthesization
 

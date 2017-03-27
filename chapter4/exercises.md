@@ -1,4 +1,4 @@
-# Exercises 4
+# Exercises 4 - Basic Datatypes
 
 ## Exercises: Mood Swing
 
