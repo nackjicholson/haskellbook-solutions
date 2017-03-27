@@ -1,129 +1,230 @@
-### 4.2 intermission
+# Exercises 4
+
+## Exercises: Mood Swing
 
 ```haskell
 data Mood = Blah | Woot deriving Show
 ```
 
 1. What is the type constructor?
-Mood
+
+  > `Mood`
 
 2. If the function requires a `Mood` value what are the values you could possible use there?
-`Blah` and `Woot`
 
-3. What's wrong with this signature if we want to change mood. changeMood :: Mood -> Woot
+  > `Blah` and `Woot`
 
-It always returns Woot mood. Also Woot isn't a type, its a value.
+3. What's wrong with this signature if we want to change mood. `changeMood :: Mood -> Woot`
 
-4. Fix mistakes:
+  > Woot is not a Type constructor and cannot be used in a function signature `changeMood :: Mood -> Mood`
+
+4. Now we want to write the function that changes his mood. Given an input mood, it gives us the other one. Fix any mistakes and complete the function:
+
+  ```haskell
+  changeMood Mood = Woot
+  changeMood _ = Blah
+  ```
+
+  Fix:
+
+  ```haskell
+  changeMood :: Mood -> Mood
+  changeMood Blah = Woot
+  changeMood Woot = Blah
+  ```
+
+5. [changeMood.hs](./changeMood.hs)
+
+## Exercises: Find the mistakes
+
+The following lines of code may have mistakes — some of them won’t compile! You know what you need to do.
+
+1. not True && true
+
+  > `not (True && True)`
+
+2. not (x = 6)
+
+  > `let x = 5 in not (x == 6)`
+
+3. (1 * 2) > 5
+
+  > is okay
+
+4. [Merry] > [Happy]
+
+  > Either define a datatype that has Merry and Happy as types that are instances of Ord, or do:
+  >
+  > `["Merry"] > ["Happy"]`
+
+5. [1, 2, 3] ++ "look at me!"
+
+  I don't think I know what to do with this.
+
+  ```haskell
+  "1 2 3 " ++ "look at me!"
+  ```
+  This is my most complex and tricky way using a fold over an anon lambda to build a string from the [1, 2, 3] list of Integers
+
+  ```haskell
+  let countIn = foldl (\str a -> str ++ show a ++ ", ") "" [1, 2, 3] in concat [countIn, "look at me!"]
+  ```
+
+## Chapter Exercises
+
+In scope:
 
 ```haskell
-changeMood Mood = Woot
-changeMood _ = Blah
+awesome = ["Papuchon", "curry", ":)"]
+alsoAwesome = ["Quake", "The Simons"]
+allAwesome = [awesome, alsoAwesome]
 ```
 
-### 4.4 Intermission
+`length` is a function that takes a list and returns a result that tells how many items are in the list.
 
-Compile errors fix them.
+1. Given the definition of length above, what would the type signature be? How many arguments, of what type does it take? What is the type of the result it evaluates to?
 
-1. not True && True
-2. let x = 6 in not (x == 6)
-3. No mistake
-4. ["Merry"] > ["Happy"]
-5. I don't think I know what to do with this one.
+  > `length :: Foldable t => t -> Int`
+  >
+  > It takes 1 argument, a list / Foldable. And it evaluates to an Int
 
-This is the quickest way by just making "1 2 3" a string.
+2. What are the results of the following expressions?
 
-```haskell
-"1 2 3 " ++ "look at me!"
-```
+  a) length [1, 2, 3, 4, 5]
 
-This is my most complex and tricky way using a fold over an anon lambda to build a string
+    > 5
 
-foldl (\str a -> str ++ show a ++ " ") "" [1, 2, 3] ++ "look at me!"
+  b) length [(1, 2), (2, 3), (3, 4)]
 
-### Chapter Exercises:
+    > 3
 
-1. length :: [a] -> Int
+  c) length allAwesome
 
-2.
-  a) 5
-  b) 3
-  c) 2
-  d) 5
+    > 2
 
-3. The `Int` type returned by length isn't the `Fractional` type expected by `(/)` operator
+  d) length (concat allAwesome)
 
-4. Using `div` works, because div expects types of `Intergral`, that is integral numbers.
+    > 5
 
-5. Bool, should expect True as result
+3. Given what we know about numeric types and the type signature of length, look at these two expressions. One works and one returns an error. Determine which will return an error and why.
 
-6. Bool, False
-   False
+  ```
+  Prelude> 6 / 3
+  -- and
+  Prelude> 6 / length [1, 2, 3]
+  ```
 
-7.
-a) True
-b) error
-c) 5
-d) False
-e) error
+  > The second fails, because `(/)` works on Fractional types and Int is not that.
+  >
+  > Though, I'm not really sure why `(/)` takes 3, it must be able to convert it to a Fractional type because it's type isn't explicitly set.
 
-8.
-```haskell
--- isPalindrome.hs
-module IsPalindrome where
+4. How can you fix the broken code from the preceding
+exercise using a different division function/operator?
 
-isPalindrome :: (Eq a) => [a] -> Bool
-isPalindrome list = (list == reverse list)
+  > `div 6 (length [1, 2, 3])`
 
-isPalindromeStr :: [Char] -> Bool
-isPalindromeStr str = (stripped == reverse stripped)
-  where stripped = filter (/=' ') str
-```
+5. What is the type of the expression 2 + 3 == 5? What would we expect as a result?
 
-9.
+  > `Bool`, `True`
 
-```haskell
-myAbs :: Integer -> Integer
-myAbs x =
-  if x >= 0
-    then x
-  else
-    (-x)
-```
+6. What is the type and expected result value of the following:
 
-10.
+  ```
+  Prelude> let x = 5
+  Prelude> x + 3 == 5
+  ```
 
-```haskell
-f :: (a, b) -> (c, d) -> ((b, d), (a, c))
-f x y = ((snd x, snd y), (fst x, fst y))
-```
+  > type is `Bool`, and the value is `False`
 
-### Reading Syntax
+7. Below are some bits of code. Which will work? Why or why not? If they will work, what value would these reduce to?
 
-Fix 'em:
+  ```
+  Prelude> length allAwesome == 2
+  True
 
-1.
-```haskell
-x = (+)
+  Prelude> length [1, 'a', 3, 'b']
+  Error, list with different types
 
-f xs = w `x` 1
+  Prelude> length allAwesome + length awesome
+  5
+
+  Prelude> (8 == 8) && ('b' < 'a')
+  False
+
+  Prelude> (8 == 8) && 9
+  Error 9 isn't a Bool
+  ```
+8, 9, 10: [exercises.hs](./exercises.hs)
+
+### Correcting Syntax
+
+1. Here, we want a function that adds 1 to the length of a string argument and returns that result.
+
+  ```haskell
+  x = (+)
+
+  F xs = w 'x' 1
   where w = length xs
-```
+  ```
 
-2.
-`id x = x`
+  Corrected:
 
-3.
+  ```haskell
+  x = (+)
 
-`(\(x:xs) -> x)`
+  f xs = w `x` 1
+    where w = length xs
+  ```
 
-4.
+2. This is supposed to be the identity function, id.
 
-`f (a, b) = a`
+  `\ X = x` to `\x -> x`
 
-Match function name to their types
+3. When fixed, this function will return 1 from the value [1, 2, 3]. Hint: you may need to refer back to the section about variables conventions in “Hello Haskell” to refresh your memory of this notation.
 
-1. c
-2. b
-3. a
-4. d
+  `\ x : xs -> x`
+
+  to:
+
+  `\(x:xs) -> x`
+
+4. When fixed, this function will return 1 from the value (1, 2).
+
+  `f (a b) = A` to `f (a, _) = a` or `f = fst`
+
+### Match the function names to their types
+
+1. Which of the following types is the type of show?
+
+  a) show a => a -> String  
+  b) Show a -> a -> String  
+  c) Show a => a -> String
+
+  > c
+
+2. Which of the following types is the type of (==)?
+
+  a) a -> a -> Bool  
+  b) Eq a => a -> a -> Bool  
+  c) Eq a -> a -> a -> Bool  
+  d) Eq a => A -> Bool
+
+  > b
+
+3. Which of the following types is the type of `fst`?
+
+  a) (a, b) -> a  
+  b) b -> a  
+  c) (a, b) -> b
+
+  > a
+
+4. Which of the following types is the type of (+)?
+
+  a) (+) :: Num a -> a -> a -> Bool  
+  b) (+) :: Num a => a -> a -> Bool  
+  c) (+) :: num a => a -> a -> a  
+  d) (+) :: Num a => a -> a -> a  
+  e) (+) :: a -> a -> a
+
+  > d
