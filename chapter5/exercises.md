@@ -133,232 +133,417 @@ Which type results from application of function?
 
   Note: It's set as Integer, no more guessing.
 
-### 5.6 Intermission
+## Exercises: Parametricity
+
+1. Given the type a -> a, which is the type for id, attempt
+to make a function that is not bottom and terminates
+successfully that does something other than returning
+the same value. This is impossible, but you should try it
+anyway.
+
+  > okay
+
+2. We can get a more comfortable appreciation of parametricity
+by looking at `a -> a -> a`. This hypothetical
+function `a -> a -> a` has two–and only two–implementations.
+Write both possible versions of `a -> a -> a`. After
+doing so, try to violate the constraints of parametrically
+polymorphic values we outlined above.
+
+  ```haskell
+  f :: a -> a -> a
+  f a b = a
+
+  g :: a -> a -> a
+  g a b = b
+
+  -- Trying to violate with any operation on the parameters would
+  -- change the type signature to be more specific
+  h :: Num a => a -> a -> a
+  h a b = a * b
+  ```
+
+3. Implement `a -> b -> b`. How many implementations can
+it have? Does the behavior change when the types of _a_
+and _b_ change?
+
+  > I think there is only this one, and types of the parameters do not have
+  any impact
+
+  ```haskell
+  f :: a -> b -> b
+  f _ b = b
+  ```
+
+## Exercises: Apply Yourself
+
+Here the code sample from the book is missing the type signature,
+of the function with type inference and I'm filling it in.
+
+1.
+
+  ```haskell
+  -- Type signature of general function
+  (++) :: [a] -> [a] -> [a]
+  -- How might that change when we apply
+  -- it to the following value?
+  myConcat :: String -> String
+  myConcat x = x ++ " yo"
+  ```
 
 2.
 
-```haskell
-foo :: a -> a -> a
-foo a b = a
-foo a b = b
-```
+  ```haskell
+  -- General function
+  (*) :: Num a => a -> a -> a
+  -- Applied to a value
+  myMult :: Fractional a => a -> a
+  myMult x = (x / 3) * 5
+  ```
 
 3.
 
-```haskell
-foo :: a -> b -> b
-foo a b = b
-foo _ b = b
-```
+  ```haskell
+  take :: Int -> [a] -> [a]
 
-### 5.7 intermission
+  myTake :: Int -> String
+  myTake x = take x "hey you"
+  ```
 
-1. `myConcat :: [Char] -> [Char]`
-2. `myMult :: Fraction a => a -> a`
-3. `myTake :: Int -> [Char]`
-4. `myCom :: Int -> Bool`
-5. `myAlph :: Char -> Bool`
+4.
 
-### Chapter exercises
+  ```haskell
+  (>) :: Ord a => a -> a -> Bool
 
-**Multiple Choice**
+  myCom :: Int -> Bool
+  myCom x = x > (length [1..10])
+  ```
 
-1. A value of type [a] is:
-  - (c) a list whose elements are all of some type `a`
-2. A function of type [[a]] -> [a] could:
-  - (a) take a list of strings as an argument
+5.
+
+  ```haskell
+  (<) :: Ord a => a -> a -> Bool
+  myAlph :: Char -> Bool
+  myAlph x = x < 'z'
+  ```
+
+## Chapter Exercises
+
+### Multiple Choice
+
+1. A value of type [a] is
+
+  a) a list of alphabetic characters  
+  b) a list of lists  
+  c) a list whose elements are all of some type _a_  
+  d) a list whose elements are all of different types
+
+  > c
+
+2. A function of type [[a]] -> [a] could
+
+  a) take a list of strings as an argument  
+  b) transform a character into a string  
+  c) transform a string in to a list of strings  
+  d) take two arguments
+
+  > a
+
 3. A function of type [a] -> Int -> a
-  - (b) returns one element of type `a` from a list
+
+  a) takes one argument  
+  b) returns one element of type _a_ from a list  
+  c) must return an Int value  
+  d) is completely fictional  
+
+  > b
+
 4. A function of type (a, b) -> a
-  - (c) takes a tuple argument and returns the first value
 
-**Determine the type**
+  a) takes a list argument and returns a Char value  
+  b) has zero arguments  
+  c) takes a tuple argument and returns the first value  
+  d) requires that _a_ and _b_ be of different types  
 
-1. All function application return a value. Determine the value returned by these function applications and the type of that value.
-  - (a) `(*9) 6` returns 54, with type `Num a => a`
-  - (b) `head [(0,"doge"),(1,"kitteh")]` returns (0, "doge") of type `Num t => (t, [Char])`
-  - (c) `head [(0 :: Integer,"doge"),(1,"kitteh")]` return (0 :: Integer, "doge") of type `(Integer, [Char])`
-  - (d) `if False then True else False` return False type `Bool`
-  - (e) `length [1, 2, 3, 4, 5]` returns 5 type `Int`
-  - (f) `(length [1, 2, 3, 4]) > (length "TACOCAT")` return False `Bool`
+  > c
 
-2.
+### Determine the type
 
-```haskell
-x = 5
-y = x + 5
-w = y * 10
-```
+1. All function applications return a value. Determine the
+value returned by these function applications and the type
+of that value.
 
-What is the type of `w`?
-It is `Num a => a`
+  a) (* 9) 6 :: Num a => a
 
-3.
+    > `(* 9) 6 :: Num a => a`
 
-```haskell
-x = 5
-y = x + 5
-z y = y * 10
-```
+  b) head [(0,"doge"),(1,"kitteh")]
 
-What is the type of z?
-It is `Num a => a -> a`
+    > `head [(0, "doge"), (1, "kitteh")] :: Num a => (a, [Char])`
 
-4.
+  c) head [(0 :: Integer ,"doge"),(1,"kitteh")]
 
-```haskell
-x = 5
-y = x + 5
-f = 4 / y
-```
+    > `head [(0 :: Integer ,"doge"),(1,"kitteh")] :: (Integer, [Char])`
 
-What is the type of f?
-It is `Fractional a => a`
+  d) if False then True else False
 
-5.
+    > `if False then True else False :: Bool`
 
-```haskell
-x = "Julie"
-y = " <3 "
-z = "Haskell"
-f = x ++ y ++ z
-```
+  e) length [1, 2, 3, 4, 5]
 
-What is the type of f?
-It is `[Char]`
+    > `length [1, 2, 3, 4, 5] :: Int`
 
-**Does it compile?**
+  f) (length [1, 2, 3, 4]) > (length "TACOCAT")
 
-1. Nope, I just would say do `wahoo = bigNum`
-2. I think it compiles
-3. Nope.
+    > `(length [1, 2, 3, 4]) > (length "TACOCAT") :: Bool`
 
-```haskell
-a = (+)
-b = 5
-c = a b 10
-d = a c 200
-```
+2. Given
 
-4. Nope `c` is not in scope
+  ```haskell
+  x = 5
+  y = x + 5
+  w = y * 10
+  ```
 
-**Type variable or specific type constructor?**
+  What is the type of w?
 
-2.
+  > `w :: Num a => a`
 
-```haskell
-f :: zed -> Zed -> Blah
---   [0]    [1]    [2]
-```
+3. Given
 
-[0] `zed` is a fully polymorphic type variable
-[1] `Zed` is concrete
-[2] `Blah` is concrete
+  ```haskell
+  x = 5
+  y = x + 5
+  z y = y * 10
+  ```
 
-3.
+  What is the type of z?
 
-```haskell
-f :: Enum b => a -> b -> C
---             [0]  [1]  [2]
-```
+  > `z :: Num a => a -> a`
 
-[0] `a` is fully polymorphic
-[1] `b` is constrained polymorphic
-[1] `C` is concrete
+4. Given
 
-4.
+  ```haskell
+  x = 5
+  y = x + 5
+  f = 4 / y
+  ```
 
-```haskell
-f :: f -> g -> C
---   [0]  [1]  [2]
-```
+  What is the type of f?
 
-[0] is fully polymorphic???
-[1] is fully polymorphic
-[2] is concrete
+  > `Fractional a => a`
 
-**Write a type signature**
+5. Given
+
+  ```haskell
+  x = "Julie"
+  y = " <3 "
+  z = "Haskell"
+  f = x ++ y ++ z
+  ```
+
+  What is the type of f?
+
+  > `f :: [Char]``
+
+### Does it compile?
 
 1.
 
-```haskell
-functionH :: [a] -> a
-functionH (x:_) = x
-```
+  ```haskell
+  bigNum = (^) 5 $ 10
+  wahoo = bigNum $ 10
+  ```
+
+  > Nope
+
+  ```haskell
+  bigNum = (5^)
+  wahoo = bigNum 10
+  ```
 
 2.
 
-```haskell
-functionC :: (Ord a) => a -> a -> Bool
-functionC x y = if (x > y) then True else False
-```
+  ```haskell
+  x = print
+  y = print "woohoo!"
+  z = x "hello world"
+  ```
+
+  > It compiles
 
 3.
 
-```haskell
-functionS :: (a, b) -> b
-functionS (x, y) = y
-```
+  ```haskell
+  a = (+)
+  b = 5
+  c = b 10
+  d = c 200
+  ```
 
-**Given a type, write a function**
+  > No, can't apply 10 to b because it is a value not a function
 
-1.
-
-```haskell
-i :: a -> a
-i a = a
-```
-
-2.
-
-```haskell
-c :: a -> b -> a
-c a b = a
-```
-
-3. Yes I believe so `c'' :: b -> a -> b` is the same signature.
+  ```haskell
+  a = (+)
+  b = 5
+  c = a b
+  d = c 200
+  ```
 
 4.
 
-```haskell
-c` :: a -> b -> b
-c` a b = b
-```
+  ```haskell
+  a = 12 + b
+  b = 10000 * c
+  ```
+
+  > No, c is not in scope
+
+  ```haskell
+  a = 12 + b
+  b = 10000 * c
+  c = 2
+  ```
+
+### Type variable or specific type constructor?
+
+1. You will be shown a type declaration, and you should
+categorize each type. The choices are a fully polymorphic
+type variable, constrained polymorphic type variable, or
+concrete type constructor.
+
+  ```haskell
+  f :: Num a => a -> b -> Int -> Int
+  -- [0] [1] [2] [3]
+  ```
+
+  > Here, the answer would be: constrained polymorphic
+  (Num) ([0]), fully polymorphic ([1]), and concrete ([2] and
+  [3]).
+
+2. Categorize each component of the type signature as described
+in the previous example.
+
+  ```haskell
+  f :: zed -> Zed -> Blah
+  -- [0]      [1]    [1]
+
+  -- [0] A fully polymorphic parameter
+  -- [1] Concrete
+  -- [2] Concrete
+  ```
+3. Categorize each component of the type signature
+
+  ```haskell
+  f :: Enum b => a -> b -> C
+  --            [0]  [1]  [2]
+
+  -- [0] Fully polymorphic
+  -- [1] Constrained polymorphic Enum
+  -- [2] Concrete
+  ```
+
+4.
+
+  ```haskell
+  f :: f -> g -> C
+  --  [0]  [1]  [2]
+
+  -- [0] Fully polymorphic
+  -- [1] Fully polymorphic
+  -- [2] Concrete
+  ```
+
+### Write a type signature
+
+1.
+
+  ```haskell
+  functionH :: [a] -> a
+  functionH (x:_) = x
+  ```
+
+2.
+
+  ```haskell
+  functionC :: Ord a => a -> a -> Bool
+  functionC x y = if (x > y) then True else False
+  ```
+
+3.
+
+  ```haskell
+  functionS :: (a, b) -> b
+  functionS (x, y) = y
+  ```
+
+### Given a type, write a function
+
+1.
+
+  ```haskell
+  i :: a -> a
+  i a = a
+  ```
+
+2.
+
+  ```haskell
+  c :: a -> b -> a
+  c x y = x
+  ```
+
+3. Given alpha equivalence are c'' and c (see above) the same
+thing?
+
+  ```haskell
+  c'' :: b -> a -> b
+  c'' = ?
+  ```
+
+  > Yes, I believe so
+
+4.
+
+  ```haskell
+  c' :: a -> b -> b
+  c' x y = y
+  ```
 
 5.
 
-```haskell
-r :: [a] -> [a]
-r (_:xs) = xs
-r [] = []
-```
+  ```haskell
+  r :: [a] -> [a]
+  r (_:xs) = xs
+  r [] = []
+  ```
 
 6.
 
-```haskell
-co :: (b -> c) -> (a -> b) -> (a -> c)
-co f g = f . g
-```
+  ```haskell
+  co :: (b -> c) -> (a -> b) -> (a -> c)
+  co f g = f . g
+  ```
 
 7.
 
-These exercises are garbage tbh...learning nothing useful
-
-```haskell
-a :: (a -> c) -> a -> a
-a b c = c
-```
+  ```haskell
+  a :: (a -> c) -> a -> a
+  a f x = x
+  ```
 
 8.
 
-```haskell
-a' :: (a -> b) -> a -> b
-a' f = f
--- or a' f x = f x
-```
+  ```haskell
+  a' :: (a -> b) -> a -> b
+  a' f = f
+  -- or a' f x = f x
+  ```
 
-Again...wtf is this shit? Why am I doing this!!!???!!!
+### Fix it
 
-**Fix it**
+see [sing.hs](./sing.hs) and [arith3broken.hs](./arith3broken.hs)
 
-see sing.hs and arith3broken.hs
+### Type-Kwon-Do
+
+see [exercises.hs](./exercises.hs)

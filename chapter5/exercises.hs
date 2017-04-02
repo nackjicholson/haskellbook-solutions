@@ -1,17 +1,21 @@
 -- chapter5/exercises.hs
 module Exercises where
 
-foo :: a -> b -> b
-foo _ b = b
-
 -- Type-Kwon-Do
 
 -- 1.
+-- I'm actually going to fill in the f and g functions, but you can
+-- leave them undefined.
+--
+-- Take an Int and get the first digit back as a Char
+-- h 48402
+-- '4'
 f :: Int -> String
-f = undefined
+f = show
 
 g :: String -> Char
-g = undefined
+g (x:_) = x
+g [] = error "Empty list"
 
 h :: Int -> Char
 h = g . f
@@ -46,5 +50,5 @@ xform (x, y) = (xz x, yz y)
 
 -- 4.
 munge :: (x -> y) -> (y -> (w, z)) -> x -> w
-munge fn1 fn2 x = fst $ fn2 $ fn1 x
--- or??? munge f g x = (fst . g . f) x
+munge xToY yToPair = fst . yToPair . xToY
+-- or munge xToY yToPair x = fst $ yToPair $ xToY x
