@@ -1,89 +1,132 @@
-# Chapter 7 Exercises
+# Exercises 7 - More functional patterns
 
-### 7.3 intermission
+## Exercises: Grab bag
 
-```
-mTh x y z = x * y * z
-mTh x y = \z -> x * y * z
-mTh x = \y -> \z -> x * y * z
-mTh = \x -> \y -> \z -> x * y * z
-```
+1. Which (two or more) of the following are equivalent?
 
-1. Which are equivalent
+  a) mTh x y z = x * y * z  
+  b) mTh x y = \z -> x * y * z  
+  c) mTh x = \y -> \z -> x * y * z  
+  d) mTh = \x -> \y -> \z -> x * y * z  
 
-  - All of them.
+  > All are equivalent
 
-2. The type of mTh (above) is Num a => a -> a -> a -> a.
-Which is the type of mTh 3?
+2. The type of mTh (above) is Num a => a -> a -> a -> a. Which is the type of mTh 3?
 
-  - (d) `Num a => a -> a -> a`
+  a) Integer -> Integer -> Integer  
+  b) Num a => a -> a -> a -> a  
+  c) Num a => a -> a  
+  d) Num a => a -> a -> a
 
-3. Anonymous functions
+  > d
 
-(a) Rewrite the f function in the where clause.
+3.  
 
-```haskell
-addOneIfOdd n = case odd n of
-  True -> f n
-  False -> n
-  where f n = n + 1
-```
+  a) Rewrite the f function in the where clause.
 
-```haskell
-addOneIfOdd n = case odd n of
-  True -> (\x -> x + 1) n
-  False -> n
-```
+  ```haskell
+  addOneIfOdd n = case odd n of
+    True -> f n
+    False -> n
+    -- where f n = n + 1
+    where f = \x -> x + 1
+  ```
 
-(b) Rewrite the following to use anonymous lambda syntax:
+  b) Rewrite the following to use anonymous lambda syntax:
 
-```haskell
-addFive x y = (if x > y then y else x) + 5
-```
+  ```haskell
+  -- addFive x y = (if x > y then y else x) + 5
+  addFive = \x -> \y -> (if x > y then y else x) + 5
+  ```
 
-```haskell
-addFive = \x -> \y -> (if x > y then y else x) + 5
-```
+  c) Rewrite the following so that it doesn’t use anonymous lambda syntax:
 
-(c) Rewrite the following so that it doesn’t use anonymous lambda syntax:
+  ```haskell
+  -- mflip f = \x -> \y -> f y x
+  mflip f x y = f y x
+  ```
 
-```haskell
-mflip f = \x -> \y -> f y x
-```
-
-```haskell
-mflip f x y = f y x
-```
-
-### 7.4 intermission
+## Exercises: Variety pack
 
 1. Given the following declarations
 
-```haskell
-k (x, y) = x
-k1 = k ((4-1), 10)
-k2 = k ("three", (1 + 2))
-k3 = k (3, True)
-```
+  ```haskell
+  k (x, y) = x
+  k1 = k ((4-1), 10)
+  k2 = k ("three", (1 + 2))
+  k3 = k (3, True)
+  ```
 
-(a) What is the type of `k`?
+  a) What is the type of k?
 
-`k :: (x, y) -> x`
+  > `k :: (x, y) -> x`
 
-(b) What is the type of `k2`? Is it the same type as `k1` or `k3`?
+  b) What is the type of k2? Is it the same type as k1 or k3?
 
-`k2 :: [Char]`. No it isn't the same type as the others. Although, k1 and k3 do have the same type. `k1 :: Num a => a`
+  > `k2 :: [Char]`, no it is not the same as k1 or k3
 
-(c) Of `k1`, `k2`, `k3` which will return the number 3 as the result?
+  c) Of k1, k2, k3, which will return the number 3 as the result?
 
-`k1` and `k3`
+  > k1 and k3 both return 3
 
 2. Fill in the definition of the following function:
 
-```haskell
-f :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
-f (a, _, c) (d, _, f) = ((a, d), (c, f))
-```
+  ```haskell
+  f :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
+  f (a, _, c) (d, _, f) = ((a, d), (c, f))
+  ```
+
+## Exercises: Case Practice
+
+See [exercises.hs](./exercises.hs)
+
+## Exercises: Artful Dodgy
+
+See [exercises.hs](./exercises.hs)
+
+1. dodgy 1 0
+
+  > 1
+
+2. dodgy 1 1
+
+  > 11
+
+3. dodgy 2 2
+
+  > 22
+
+4. dodgy 1 2
+
+  > 21
+
+5. dodgy 2 1
+
+  > 12
+
+6. oneIsOne 1
+
+  > 11
+
+7. oneIsOne 2
+
+  > 21
+
+8. oneIsTwo 1
+
+  > 21
+
+9. oneIsTwo 2
+
+  > 22
+
+10. oneIsOne 3
+
+  > 31
+
+11. oneIsTwo 3
+
+  > 23
 
 ### 7.8 intermission
 

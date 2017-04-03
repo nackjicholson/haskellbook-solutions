@@ -1,11 +1,10 @@
 -- chapter7/exercises
 module Exercises where
 
--- 7.5 Intermisssion
+-- Exercises: Case Practice
 
--- Rewrite if-then-else
-
--- 1.
+-- 1. The following should return x when x is greater than y.
+--
 -- functionC x y = if (x > y) then x else y
 functionC :: Ord a => a -> a -> a
 functionC x y =
@@ -13,17 +12,16 @@ functionC x y =
     True -> x
     False -> y
 
--- 2.
--- ifEvenAdd2 n = if even n then (n + 2) else n
+-- 2. The following will add 2 to even numbers and otherwise
+-- simply return the input value.
+-- ifEvenAdd2 n = if even n then (n+2) else n
 ifEvenAdd2 :: Integral a => a -> a
 ifEvenAdd2 n =
-  case isEven of
+  case even n of
     True -> n + 2
     False -> n
-  where isEven = even n
 
--- Fix it
-
+-- Fix it to hanle if x is 0
 nums :: (Num a, Ord a) => a -> Int
 nums x =
   case compare x 0 of
@@ -31,7 +29,7 @@ nums x =
     LT -> -1
     GT -> 1
 
--- 7.6 Intermission
+-- Exercises: Artful Dodgy
 
 dodgy :: Num a => a -> a -> a
 dodgy x y = x + y * 10
@@ -41,18 +39,6 @@ oneIsOne = dodgy 1
 
 oneIsTwo :: Num a => a -> a
 oneIsTwo = flip dodgy 2
-
--- 1. dodgy 1 0 -> 1
--- 2. dodgy 1 1 -> 11
--- 3. dodgy 2 2 -> 22
--- 4. dodgy 1 2 -> 21
--- 5. dodgy 2 1 -> 12
--- 6. oneIsOne 1 -> 11
--- 7. oneIsOne 2 -> 21
--- 8. oneIsTwo 1 -> 21
--- 9. oneIsTwo 2 -> 22
--- 10. oneIsOne 3 -> 31
--- 11. oneIsTwo 3 -> 23
 
 -- Chapter Exercises
 

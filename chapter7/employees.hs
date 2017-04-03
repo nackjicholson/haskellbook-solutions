@@ -26,4 +26,4 @@ employeeRank f e e' =
   case f e e' of
     GT -> reportBoss e e'
     EQ -> putStrLn "Neither employee is the boss"
-    LT -> (flip reportBoss) e e'
+    LT -> reportBoss e' e
