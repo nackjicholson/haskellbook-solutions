@@ -15,15 +15,15 @@ addOnePF = (+1)
 
 main :: IO ()
 main = do
-  print (0 :: Int)
-  print (add 1 0)
-  print (addOne 0)
-  print (addOnePF 0)
-  print ((addOne . addOne) 0)
-  print ((addOnePF . addOne) 0)
-  print ((addOne . addOnePF) 0)
-  print ((addOnePF . addOnePF) 0)
-  print (negate (addOne 0))
-  print ((negate . addOne) 0)
+  print (0 :: Int) -- 0
+  print (add 1 0) -- 1
+  print (addOne 0) -- 1
+  print (addOnePF 0) -- 1
+  print ((addOne . addOne) 0) -- 2
+  print ((addOnePF . addOne) 0) -- 2
+  print ((addOne . addOnePF) 0) -- 2
+  print ((addOnePF . addOnePF) 0) -- 2
+  print (negate (addOne 0)) -- -1
+  print ((negate . addOne) 0) -- -1
   print ((addOne . addOne . addOne
-    . negate . addOne) 0)
+    . negate . addOne) 0) -- 2

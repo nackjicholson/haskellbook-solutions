@@ -14,6 +14,7 @@ functionC x y =
 
 -- 2. The following will add 2 to even numbers and otherwise
 -- simply return the input value.
+--
 -- ifEvenAdd2 n = if even n then (n+2) else n
 ifEvenAdd2 :: Integral a => a -> a
 ifEvenAdd2 n =
