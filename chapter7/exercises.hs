@@ -52,13 +52,15 @@ tensDigit x = d
   where xLast = x `div` 10
         d = xLast `mod` 10
 
--- Rewrite using divMod
+-- a) First, rewrite it using divMod.
 tensDigit' :: Integral a => a -> a
 tensDigit' x = d
   where (xLast, _) = x `divMod` 10
         d = xLast `mod` 10
+-- b) Does the divMod version have the same type as the original version?
+-- Yes
 
--- Implement hunsD
+-- c) Implement hunsD
 hunsD :: Integral a => a -> a
 hunsD x = d2
   where d = x `div` 100
@@ -77,7 +79,7 @@ foldBool1 x y b =
     True -> x
     False -> y
 
--- where
+-- guards
 foldBool2 :: a -> a -> Bool -> a
 foldBool2 x y b
   | b == True = x
