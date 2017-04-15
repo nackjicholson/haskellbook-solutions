@@ -278,8 +278,6 @@ apply it to one numeric value. What is the type now?
 
 ### Let's write code
 
-see [exercises.hs](./exersises.hs)
+1,2,3: see [exercises.hs](./exersises.hs)
 
-**Let's write code**
-
-see [exercises.hs](./exercises.hs)
+4,5,6: see [arith4.hs](./arith4.hs)

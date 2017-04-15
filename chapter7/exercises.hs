@@ -96,15 +96,3 @@ foldBool3 x y False = y
 g :: (a -> b) -> (a, c) -> (b, c)
 g f (a, c) = (b, c)
   where b = f a
-
--- 4.
--- see arith4.hs
--- We convert 4 to a string with "show" and then
--- back to a number again with "read", so the value 4 :: Integer
--- ends up getting sent to print
-
--- 5.
--- see arith4.hs I converted it in there.
-
--- 6.
--- see arith4.hs

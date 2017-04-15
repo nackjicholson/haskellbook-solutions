@@ -1,8 +1,14 @@
-# Chapter 8 Exercises
+# Exercises 8 - Recursion
 
-### 8.2 intermission
+## Intermission: Exercise
 
 1. Evaluate `applyTimes 5 (+1) 5`
+
+  ```haskell
+  applyTimes :: (Eq a, Num a) => a -> (b -> b) -> b -> b
+  applyTimes 0 f b = b
+  applyTimes n f b = f . applyTimes (n-1) f $ b
+  ```
 
   ```
   applyTimes 5 (+1) 5
@@ -11,42 +17,64 @@
       (+1) . (+1) . (+1) . applyTimes (3-1) (+1) $ 5        
       (+1) . (+1) . (+1) . (+1) . applyTimes (2-1) (+1) $ 5        
       (+1) . (+1) . (+1) . (+1) . (+1) . applyTimes (1-1) (+1) $ 5
-      (+1) . (+1) . (+1) . (+1) . (+1) $ 5
-      (+1) . (+1) . (+1) . (+1) $ 6
-      (+1) . (+1) . (+1) $ 7
-      (+1) . (+1) $ 8
-      (+1) $ 9
+      (+1) . (+1) . (+1) . (+1) . (+1) . applyTimes 0 (+1) 5
+      (+1) . (+1) . (+1) . (+1) . (+1) 5
+      (+1) . (+1) . (+1) . (+1) 6
+      (+1) . (+1) . (+1) 7
+      (+1) . (+1) 8
+      (+1) 9
       10
   ```
 
-### Chapter Exercises
+## Chapter Exercises
 
-**Review of types**
+### Review of types
 
-1. What is the type of [[True, False], [True, True], [False, True]] ?
+1. What is the type of [[True, False], [True, True], [False, True]]?
 
-  - (d) [[Bool]]
+  a) Bool  
+  b) mostly True  
+  c) [a]  
+  d) [[Bool]]  
 
-2. Which of the following has the same type as [[True,
-False], [True, True], [False, True]]?
+  > d
 
-  - (b) [[3 == 3], [6 > 5], [3 < 4]]
+2. Which of the following has the same type as [[True, False], [True, True], [False, True]]?
+
+  a) [(True, False), (True, True), (False, True)]  
+  b) [[3 == 3], [6 > 5], [3 < 4]]  
+  c) [3 == 3, 6 > 5, 3 < 4]  
+  d) ["Bool", "more Bool", "Booly Bool!"]
+
+  > b
+
+3. For the following function.
 
   ```haskell
   func :: [a] -> [a] -> [a]
   func x y = x ++ y
   ```
 
-3. For the above, which of the following is true?
+  which of the following is true?
 
-  - (d) all of the above.
+  a) x and y must be of the same type  
+  b) x and y must both be lists  
+  c) if x is a String then y must be a String  
+  d) all of the above
 
-4. For the above, which is a valid application of `func` to both of it's
-arguments?
+  > d
 
-  - (b) func "Hello" "World"
+4. For the `func` code above, which is a valid application of
+`func` to both of its arguments?
 
-**Reviewing currying**
+  a) func "Hello World"  
+  b) func "Hello" "World"  
+  c) func [1, 2, 3] "a, b, c"  
+  d) func ["Hello", "World"]
+
+  > b
+
+### Reviewing currying
 
 ```haskell
 cattyConny :: String -> String -> String
@@ -62,31 +90,30 @@ frappe :: String -> String
 frappe = flippy "haha"
 ```
 
-1. What is the value of `appedCatty "woohoo!"`?
+1. What is the value of appedCatty "woohoo!" ? Try to determine
+the answer for yourself, then test in the REPL.
 
-  - "woops mrow woohoo!"
+2. frappe "1"
 
-2. And for `frappe "1"`?
+  > "1 mrow haha"
 
-  - "1 mrow haha"
+3. frappe (appedCatty "2")
 
-3. For `frappe (appedCatty "2")`?
+  > "woops mrow 2 mrow haha"
 
-  - "woops mrow 2 mrow haha"
+4. appedCatty (frappe "blue")
 
-4. For `appedCatty (frappe "blue")`?
+  > "woops mrow blue mrow haha"
 
-  - "woops mrow blue mrow haha"
+5. cattyConny (frappe "pink") (cattyConny "green" (appedCatty "blue"))
 
-5. For `cattyConny (frappe "pink") (cattyConny "green" (appedCatty "blue"))`?
+  > "pink mrow haha mrow green mrow woops mrow blue"
 
-  - "pink mrow haha mrow green mrow woops mrow blue"
+6. cattyConny (flippy "Pugs" "are") "awesome"
 
-6. For `cattyConny (flippy "Pugs" "are") "awesome"`
+  > "are mrow Pugs mrow awesome"
 
-  - "are mrow Pugs mrow awesome"
-
-**Recursion**
+### Recursion
 
 1. Write out the steps for reducing `dividedBy 15 2` to it's final answer?
 
@@ -122,6 +149,6 @@ summation. The type should be (Integral a) => a -> a -> a
 
   - see [exercises.hs](./exercises.hs) `multipliedBy`
 
-**Fixing dividedBy**
+### Fixing dividedBy
 
   - see [exercises.hs](./exercises.hs) `dividedBy`
