@@ -1,9 +1,9 @@
 -- chapter9/exercises.hs
-module Exercises where
+module Exercises9 where
 
 import Data.Char
 
--- 9.5 Intermission
+-- Exercises: EnumFromTo
 --
 -- Not clear at all to me what this book wants me to do with these type specific
 -- implementations of enumFromTo. They haven't taught me folds or any way to
@@ -24,13 +24,14 @@ import Data.Char
 eft :: (Enum a, Ord a) => a -> a -> [a]
 eft start stop
   | start > stop = []
-  | start == stop = [stop]
   | otherwise = start : eft (succ start) stop
 
 -- I'll hard code this one.
 eftBool :: Bool -> Bool -> [Bool]
+eftBool False False = [False]
+eftBool True True = [True]
 eftBool False True = [False, True]
-eftBool _ _ = []
+eftBool True False = []
 
 eftOrd :: Ordering -> Ordering -> [Ordering]
 eftOrd = eft

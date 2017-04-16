@@ -1,5 +1,5 @@
 -- chapter7/exercises
-module Exercises where
+module Exercises7 where
 
 -- Exercises: Case Practice
 

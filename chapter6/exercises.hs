@@ -1,5 +1,5 @@
 -- charpter6/exercises.hs
-module Exercises where
+module Exercises6 where
 
 -- Chapter Exercises
 

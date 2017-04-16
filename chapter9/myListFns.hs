@@ -3,7 +3,7 @@ module MyListFns where
 
 safeTail :: [a] -> Maybe [a]
 safeTail [] = Nothing
-safeTail [_] = Nothing
+safeTail (x:[]) = Nothing
 safeTail (_:xs) = Just xs
 
 safeHead :: [a] -> Maybe a

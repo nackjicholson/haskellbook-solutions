@@ -1,5 +1,5 @@
 -- chapter8/exercises.hs
-module Exercises where
+module Exercises8 where
 
 import Data.List (intercalate)
 

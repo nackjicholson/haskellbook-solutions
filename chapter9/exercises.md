@@ -1,4 +1,8 @@
-# Chapter 9 Exercises
+# Exercises 9 - Lists
+
+## Exercises: EnumFromTo
+
+see [exercises.hs](./exercises.hs)
 
 ### 9.7 Intermission
 

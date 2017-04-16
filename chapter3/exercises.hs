@@ -1,5 +1,5 @@
 -- chapter3/exercises.hs
-module Chapter3Exercises where
+module Exercises3 where
 
 exclaim :: String -> String
 exclaim str = str ++ "!"

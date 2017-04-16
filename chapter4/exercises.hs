@@ -1,5 +1,5 @@
 -- exercises.hs
-module Exercises where
+module Exercises4 where
 
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome x = x == reverse x

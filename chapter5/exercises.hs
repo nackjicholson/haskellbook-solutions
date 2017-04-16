@@ -1,5 +1,5 @@
 -- chapter5/exercises.hs
-module Exercises where
+module Exercises5 where
 
 -- Type-Kwon-Do
 
