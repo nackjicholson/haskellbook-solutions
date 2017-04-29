@@ -42,13 +42,13 @@ eftInt = eft
 eftChar :: Char -> Char -> String
 eftChar = eft
 
--- 9.6 Intermission
+-- Exercises: Thy Fearful Symmetry
 
 -- 1.
 myWords :: String -> [String]
-myWords str
-  | null str = []
-  | otherwise = word : myWords remaining
+myWords "" = []
+myWords (' ':xs) = myWords xs
+myWords str = word : myWords remaining
   where word = takeWhile (/=' ') str
         remaining = drop (length word + 1) str
 
@@ -62,12 +62,12 @@ myWords' xs = takeWhile (/= ' ') xs : myWords (dropWhile (/= ' ') xs)
 
 -- 3.
 explodeStrOnChar :: Char -> String -> [String]
-explodeStrOnChar _ [] = []
+explodeStrOnChar _ "" = []
 explodeStrOnChar char str = subString : explodeStrOnChar char remainingStr
   where subString = takeWhile (/= char) str
         remainingStr = drop (length subString + 1) str
 
--- 9.10 Intermission
+-- Exercises: Filtering
 
 -- 3.
 -- myFilter "the brown dog was a goof"
@@ -76,7 +76,7 @@ myFilter :: String -> [String]
 myFilter str = filter isNotArticle (myWords str)
   where isNotArticle x = x `notElem` ["a", "an", "the"]
 
--- 9.11 Intermission
+-- Exercises: Zipping
 
 -- 1. Remimplement zip
 myZip' :: [a] -> [b] -> [(a, b)]

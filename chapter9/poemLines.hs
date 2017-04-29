@@ -14,11 +14,11 @@ sentences = "Tyger Tyger, burning bright\n" ++
 -- Could frame thy fearful symmetry?
 -- Implement this
 myLines :: String -> [String]
-myLines script
-  | null script = []
-  | otherwise = line : myLines remaining
+myLines "" = []
+myLines script = line : myLines remaining
   where line = takeWhile (/='\n') script
-        remaining = drop (length line + 1) script
+        lineLength = length line
+        remaining = drop (lineLength + 1) script
 
 -- What we want 'myLines sentences' to equal
 shouldEqual :: [String]

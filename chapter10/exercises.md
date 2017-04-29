@@ -1,4 +1,4 @@
-# Chapter 10 Exercises
+# Exercises 10 - Folding Lists
 
 ### 10.5 "Fold Left" Intermission
 
